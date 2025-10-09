@@ -54,10 +54,14 @@ async def process_expenses_data(prompt, expenses_data):
 
         # Use the agent to process the expenses data    
         try:
+            # thread is optional
+            # Create the agent thread for ongoing conversation
+            thread = agent.get_new_thread()
+
             # Add the input prompt to a list of messages to be submitted
             prompt_messages = [f"{prompt}: {expenses_data}"]
             # Invoke the agent for the specified thread with the messages
-            response = await agent.run(prompt_messages)
+            response = await agent.run(prompt_messages, thread=thread)
             # Display the response
             print(f"\n# Agent:\n{response}")
         except Exception as e:
