@@ -1,0 +1,17 @@
+[project]
+name = "labfiles"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "agent-framework>=1.0.0b251007",
+    "azure-ai-projects>=1.1.0b4",
+    "azure-identity>=1.25.1",
+    "mcp>=1.16.0",
+    "python-dotenv>=1.1.1",
+    "uvicorn>=0.37.0",
+]
+
+[tool.uv]
+prerelease = "allow"
