@@ -1,0 +1,120 @@
+# Architecture Diagram Generation Task
+
+## Objective
+Analyze the following code structure and generate a comprehensive Mermaid flowchart 
+diagram showing the system architecture, component interactions, and data flow.
+
+## Requirements
+
+1. **Diagram Type**: Use Mermaid `graph TD` (top-down) or `graph LR` (left-right)
+2. **Component Grouping**: Use subgraphs to group related components
+3. **Flow Direction**: Show data/control flow with directional arrows (-->)
+4. **External Services**: Highlight integrations with external APIs/services
+5. **Color Coding**:
+   - User/Application code: `style A fill:#e1f5ff` (light blue)
+   - Framework/Library code: `style B fill:#fff4e1` (light yellow)
+   - External Services: `style C fill:#ffe1e1` (light red)
+   - Data/State: `style D fill:#f0fff0` (light green)
+
+## Repository Overview
+
+- **Total Python Files**: 1
+- **Entry Points**: 1
+- **Total Lines of Code**: 97
+- **Configuration Files**: 0
+
+## Entry Points Detected
+
+- `agent-framework.py` (python/)
+
+## Detailed Code Analysis
+
+### agent-framework.py
+
+**Location**: `C:\Users\zhuohangli\Documents\dev\mslearn-ai-agents\Labfiles\04-agent-framework\python\agent-framework.py`
+**Size**: 97 lines
+
+**Async Functions**: main, process_expenses_data
+**Functions**: send_email
+
+**External Services Detected**:
+- `from agent_framework.azure import AzureAIAgentClient`
+- `from azure.identity.aio import AzureCliCredential`
+
+**Key Imports**:
+- `import os`
+- `import asyncio`
+- `from pathlib import Path`
+- `from dotenv import load_dotenv`
+- `from agent_framework import AgentThread, ChatAgent`
+- `from agent_framework.azure import AzureAIAgentClient`
+- `from azure.identity.aio import AzureCliCredential`
+- `from pydantic import Field`
+- `from typing import Annotated`
+
+---
+
+
+## Output Format
+
+Please generate a Mermaid diagram with the following structure:
+
+```mermaid
+graph TD
+    %% User/Application Layer
+    subgraph "Application Layer"
+        A[Component A]
+        B[Component B]
+    end
+    
+    %% Framework Layer
+    subgraph "Framework Layer"
+        C[Framework Component]
+        D[Client Component]
+    end
+    
+    %% External Services
+    subgraph "External Services"
+        E[(Azure AI Service)]
+        F[(Database)]
+    end
+    
+    %% Flows
+    A -->|user input| B
+    B -->|delegates to| C
+    C -->|API call| E
+    E -->|response| C
+    C -->|formatted| B
+    B -->|result| A
+    
+    %% Styling
+    style A fill:#e1f5ff
+    style B fill:#e1f5ff
+    style C fill:#fff4e1
+    style D fill:#fff4e1
+    style E fill:#ffe1e1
+    style F fill:#ffe1e1
+```
+
+## Analysis Guidelines
+
+1. **Identify the main execution flow** from entry point to completion
+2. **Group components** by responsibility (presentation, business logic, data access)
+3. **Show async/streaming flows** where applicable
+4. **Highlight external integrations** (APIs, databases, message queues)
+5. **Include error handling flows** if significant
+6. **Add brief annotations** on arrows describing the data/action
+7. **Keep it clear** - max 15 nodes, 3 levels of nesting
+
+## Expected Components to Look For
+
+Based on the code analysis:
+- User-facing components (CLI, API endpoints)
+- Agent/orchestration logic
+- AI client integrations (OpenAI, Azure, etc.)
+- Data storage (file, database, cache)
+- Authentication/authorization flows
+- Message/event handling
+- Configuration management
+
+Generate the Mermaid diagram now.
