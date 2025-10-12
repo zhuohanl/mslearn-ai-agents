@@ -1,6 +1,54 @@
-# AzureAIAgentClient Source Code Flow Diagram
+# Single Agent - Flow Diagram
 
 This document provides a detailed mermaid diagram showing how the AzureAIAgentClient works internally, with source code references.
+
+## Table of Contents
+
+- [AzureAIAgentClient Source Code Flow Diagram](#azureaiagentclient-source-code-flow-diagram)
+  - [Complete Flow Diagram](#complete-flow-diagram)
+  - [Detailed Component Breakdown](#detailed-component-breakdown)
+    - [1. Initialization (Lines 169-261)](#1-initialization-lines-169-261)
+    - [2. Message Processing Entry Point (Lines 321-349)](#2-message-processing-entry-point-lines-321-349)
+    - [3. Agent Creation (Lines 351-380)](#3-agent-creation-lines-351-380)
+    - [4. Thread Management (Lines 448-460)](#4-thread-management-lines-448-460)
+    - [5. Stream Creation and Processing (Lines 382-432, 462-615)](#5-stream-creation-and-processing-lines-382-432-462-615)
+    - [6. Function Call Processing (Lines 617-651, 899-938)](#6-function-call-processing-lines-617-651-899-938)
+    - [7. Message Conversion (Lines 668-843)](#7-message-conversion-lines-668-843)
+    - [8. Cleanup (Lines 653-666)](#8-cleanup-lines-653-666)
+  - [Key Data Structures](#key-data-structures)
+    - [ThreadRun States](#threadrun-states)
+    - [Server-Sent Event Types](#server-sent-event-types)
+  - [API Endpoints Used](#api-endpoints-used)
+  - [Connection Lifecycle Summary](#connection-lifecycle-summary)
+- [ChatAgent Source Code Flow Diagram](#chatagent-source-code-flow-diagram)
+  - [ChatAgent Complete Flow Diagram](#chatagent-complete-flow-diagram)
+  - [ChatAgent Initialization Deep Dive](#chatagent-initialization-deep-dive)
+  - [ChatAgent run() Method Flow](#chatagent-run-method-flow)
+  - [ChatAgent run\_stream() Method Flow](#chatagent-run_stream-method-flow)
+  - [Thread and Message Preparation](#thread-and-message-preparation)
+  - [Key Data Flow Summary](#key-data-flow-summary)
+  - [ChatAgent vs AzureAIAgentClient Responsibility Split](#chatagent-vs-azureaiagentclient-responsibility-split)
+  - [Complete Integration Example](#complete-integration-example)
+- [AgentThread Source Code Flow Diagram](#agentthread-source-code-flow-diagram)
+  - [AgentThread Complete Flow Diagram](#agentthread-complete-flow-diagram)
+  - [AgentThread Initialization Deep Dive](#agentthread-initialization-deep-dive)
+  - [Property Management with Mutual Exclusion](#property-management-with-mutual-exclusion)
+  - [Message Handling](#message-handling)
+  - [Serialization for State Persistence](#serialization-for-state-persistence)
+  - [Deserialization for State Restoration](#deserialization-for-state-restoration)
+  - [Update Existing Thread From State](#update-existing-thread-from-state)
+  - [Storage Mode Comparison](#storage-mode-comparison)
+  - [Thread Lifecycle with ChatAgent](#thread-lifecycle-with-chatagent)
+  - [Key Design Patterns](#key-design-patterns)
+    - [1. Mutual Exclusion Pattern](#1-mutual-exclusion-pattern)
+    - [2. Lazy Initialization Pattern](#2-lazy-initialization-pattern)
+    - [3. Storage Mode Detection Pattern](#3-storage-mode-detection-pattern)
+  - [AgentThread State Transitions](#agentthread-state-transitions)
+  - [Complete Integration Example](#complete-integration-example-1)
+
+---
+
+# AzureAIAgentClient Source Code Flow Diagram
 
 ## Complete Flow Diagram
 
