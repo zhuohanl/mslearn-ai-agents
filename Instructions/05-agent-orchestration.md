@@ -141,6 +141,8 @@ Now you're ready to create the agents for your multi-agent solution! Let's get s
    ):
     ```
 
+    Note that the **AzureCliCredential** object will allow your code to authenticate to your Azure account. The **AzureAIAgentClient** object will automatically include the Azure AI Foundry project settings from the .env configuration.
+
 1. Add the following code under the comment **Create agents**:
 
     (Be sure to maintain the indentation level)

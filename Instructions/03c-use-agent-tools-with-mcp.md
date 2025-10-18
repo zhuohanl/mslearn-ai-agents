@@ -199,6 +199,15 @@ In this task, you'll connect to a remote MCP server, prepare the AI agent, and r
    print(f"Created message, ID: {message.id}")
     ```
 
+1. Find the comment **Set approval mode** and add the following code:
+
+    ```python
+    # Set approval mode
+    mcp_tool.set_approval_mode("never")
+    ```
+
+    This allows the agent to automatically invoke the MCP tools without requiring user approval. If you want to require approval, you must supply a header value using `mcp_tool.update_headers`.
+
 1. Find the comment **Create and process agent run in thread with MCP tools** and add the following code:
 
     ```python

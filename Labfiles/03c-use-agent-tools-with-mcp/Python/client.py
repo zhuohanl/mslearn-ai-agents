@@ -69,6 +69,9 @@ with agents_client:
     )
     print(f"Created message, ID: {message.id}")
 
+    # Set approval mode
+
+
     # Create and process agent run in thread with MCP tools
     run = agents_client.runs.create_and_process(
         thread_id=thread.id, 

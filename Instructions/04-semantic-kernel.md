@@ -157,7 +157,7 @@ Now you're ready to create a client app that defines an agent and a custom funct
    ):
     ```
 
-    Note that the **AzureCliCredential** object will automatically include the Azure AI Foundry project settings from the configuration.
+    Note that the **AzureCliCredential** object will allow your code to authenticate to your Azure account. The **AzureAIAgentClient** object will automatically include the Azure AI Foundry project settings from the .env configuration.
 
 1. Find the comment **Use the agent to process the expenses data**, and add the following code to create a thread for your agent to run on, and then invoke it with a chat message.
 
