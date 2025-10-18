@@ -5,3 +5,5 @@ uvicorn
 starlette
 sse-starlette
 fastapi
+azure-ai-projects
+a2a-sdk
